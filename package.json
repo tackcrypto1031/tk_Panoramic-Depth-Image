@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "concurrently -n vite,server -c blue,green \"vite\" \"tsx watch server/index.ts\"",
     "build": "vite build && tsc -p server/tsconfig.json && node -e \"require('fs').writeFileSync('dist/.build-version', require('./package.json').version)\"",
     "start": "node dist/server/index.js",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "eslint . --ext .ts,.tsx --no-error-on-unmatched-pattern",
     "format": "prettier --write .",
     "test": "vitest run",
     "test:watch": "vitest",

@@ -5,7 +5,7 @@ data/
 .env
 .env.local
 .env.*.local
-.vscode/
+.vscode/*
 !.vscode/settings.json
 .DS_Store
 Thumbs.db
