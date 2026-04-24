@@ -1,6 +1,6 @@
 # tk_Panoramic-Depth-Image
 
-https://github.com/tackcrypto1031/tk_Panoramic-Depth-Image/raw/main/video/tool-intro/tk_depthimg_intro_final.mp4
+<video src="https://github.com/tackcrypto1031/tk_Panoramic-Depth-Image/raw/main/video/tool-intro/tk_depthimg_intro_final.mp4" controls width="100%"></video>
 
 本地單人使用的 Web 檢視器,支援 **equirectangular 全景圖 + 可選的深度圖**。上傳全景圖(以及深度圖,如果有的話),在瀏覽器中以下列方式呈現:
 

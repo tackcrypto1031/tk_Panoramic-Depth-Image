@@ -1,6 +1,6 @@
 # tk_Panoramic-Depth-Image
 
-https://github.com/tackcrypto1031/tk_Panoramic-Depth-Image/raw/main/video/tool-intro/tk_depthimg_intro_final.mp4
+<video src="https://github.com/tackcrypto1031/tk_Panoramic-Depth-Image/raw/main/video/tool-intro/tk_depthimg_intro_final.mp4" controls width="100%"></video>
 
 A local, single-user web viewer for **equirectangular panoramas with optional depth maps**. Upload a panorama (and, if you have it, a depth map), and view it in the browser with:
 
