@@ -141,7 +141,7 @@ export function createItemsRouter(deps: Deps): Router {
       if (req.body.viewerSettings !== undefined) {
         patch.viewerSettings = validateViewerSettingsPatch(
           req.body.viewerSettings
-        ) as Item['viewerSettings'];
+        ) as unknown as Item['viewerSettings'];
       }
       if (Object.keys(patch).length === 0) {
         throw ApiErrors.validation('至少需提供一個要更新的欄位');
