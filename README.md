@@ -10,6 +10,10 @@ A local, single-user web viewer for **equirectangular panoramas with optional de
 
 [中文說明 / Chinese README](./README.zh-TW.md)
 
+
+https://github.com/user-attachments/assets/92926fd4-1b40-46b0-819e-9cea8ab04498
+
+
 ---
 
 ## Quick start (Windows)
