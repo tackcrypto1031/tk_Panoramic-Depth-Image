@@ -28,6 +28,15 @@ function loadConfig(): Config {
 
   const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf-8'));
 
+  if (process.env.E2E_DATA_DIR) {
+    return {
+      port,
+      dataDir: path.resolve(process.env.E2E_DATA_DIR),
+      distDir: path.join(root, 'dist', 'client'),
+      version: pkg.version,
+    };
+  }
+
   return {
     port,
     dataDir: path.join(root, 'data'),
