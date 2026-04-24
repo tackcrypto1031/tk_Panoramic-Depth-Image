@@ -1,65 +1,90 @@
-# tk_depthimg
+# tk_Panoramic-Depth-Image
 
-本地單人全景 + 深度圖檢視器。上傳 equirectangular 全景圖（必填）與深度圖（可選），在瀏覽器中呈現球面 displacement + 滑鼠 translation 視差效果。
+A local, single-user web viewer for **equirectangular panoramas with optional depth maps**. Upload a panorama (and, if you have it, a depth map), and view it in the browser with:
 
-## 快速開始（Windows）
+- 360° orbit-drag rotation
+- Depth-based sphere displacement (geometric 3D)
+- **Depth Mode** — locks the view and turns mouse movement into a camera-translation parallax for a strong "3D photo" feel
 
-雙擊 `start.bat` 即可。第一次執行會自動：
+[中文說明 / Chinese README](./README.zh-TW.md)
 
-1. 檢查 Node.js（需 v20+）
-2. 安裝依賴（`npm install`）
-3. 初始化 `data/` 資料夾
-4. 建置前後端（`npm run build`）
-5. 啟動 server（`127.0.0.1:3001`）
-6. 開啟預設瀏覽器
+---
 
-之後每次雙擊：偵測到 server 已在執行就只開瀏覽器新 tab。
+## Quick start (Windows)
 
-## 開發模式
+Double-click `start.bat`. On first run it will:
 
-雙擊 `dev.bat` 或手動 `npm run dev`：
+1. Check Node.js (v20+ required)
+2. `npm install` dependencies
+3. Initialize the `data/` directory
+4. Build front-end + server (`npm run build`)
+5. Start the server on `127.0.0.1:3001` and open your browser
 
-- Vite dev server（5173，HMR）+ Express API（3001，tsx watch）
-- 瀏覽器打開 `http://localhost:5173`
+Every subsequent run reuses the build if source files haven't changed. Closing the `start.bat` window terminates the server.
 
-## 強制重建
+### Manual start (any OS)
 
-`rebuild.bat`（刪 `dist/` 後重 build）。
+```bash
+npm install
+npm run build
+node dist/server/index.js
+```
 
-## 資料儲存
+Then open `http://localhost:3001`.
 
-全部儲存在 `./data/`（不進 git）：
+## Development mode
+
+```bash
+npm run dev
+```
+
+- Vite dev server on `5173` with HMR
+- Express API on `3001` via `tsx watch`
+- Open `http://localhost:5173`
+
+On Windows you can double-click `dev.bat`.
+
+## Data layout
+
+All user data lives under `./data/` (gitignored):
 
 ```
 data/
-├── items.json  # metadata
-├── uploads/<id>/  # panorama + depth
-├── thumbs/  # 縮圖
-├── .trash/  # 軟刪除暫存 7 天
-└── logs/  # pino 日誌
+├── items.json        # metadata index
+├── uploads/<id>/     # panorama + optional depth per item
+├── thumbs/           # item thumbnails
+├── .trash/           # soft-delete staging (7-day retention)
+└── logs/             # pino server logs
 ```
 
-## 設計文件
+## Viewer controls
 
-- 設計：[`docs/superpowers/specs/2026-04-23-panorama-depth-viewer-design.md`](docs/superpowers/specs/2026-04-23-panorama-depth-viewer-design.md)
-- 實作計畫：[`docs/superpowers/plans/2026-04-23-panorama-depth-viewer.md`](docs/superpowers/plans/2026-04-23-panorama-depth-viewer.md)
+| Control | Effect |
+| --- | --- |
+| Drag | Rotate view (disabled in Depth Mode) |
+| Mouse wheel | Zoom (FOV) |
+| Depth Mode toggle | Locks view; mouse movement drives parallax |
+| Depth strength | Geometric sphere displacement amount |
+| Invert depth | Flip near/far convention (white=near by default) |
+| Parallax strength | Camera translation range in Depth Mode |
+| Auto-rotate | Slow continuous rotation |
 
-## 快捷鍵
+### Keyboard shortcuts
 
-- 首頁：`/` 聚焦搜尋
-- Viewer：`Esc` 返回 / `F` 全螢幕 / `Space` 切換自動旋轉 / `R` 重設參數 / `?` 說明
+- **Home:** `/` focus search
+- **Viewer:** `Esc` back · `F` fullscreen · `Space` toggle auto-rotate · `R` reset settings · `?` shortcut help
 
-## 技術棧
+## Tech stack
 
-Node 20+ / Express / React 18 / Vite / TypeScript / react-three-fiber / Sharp / zustand
+Node 20+ · Express · React 18 · Vite · TypeScript · react-three-fiber · three.js · Sharp · Zustand
 
-## 測試
+## Testing
 
 ```bash
-npm test         # 單元 + component 測試（vitest）
-npm run test:e2e # playwright smoke
+npm test          # unit + component tests (vitest)
+npm run test:e2e  # end-to-end smoke tests (playwright)
 ```
 
 ## License
 
-Private / internal tool.
+See [LICENSE](./LICENSE) (to be added — open-source license TBD).
