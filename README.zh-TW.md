@@ -10,6 +10,10 @@
 
 [English README](./README.md)
 
+
+https://github.com/user-attachments/assets/edcabf8b-025f-458d-8a5f-f7b3f92adbe5
+
+
 ---
 
 ## 快速開始(Windows)
