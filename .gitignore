@@ -12,3 +12,5 @@ Thumbs.db
 playwright-report/
 test-results/
 coverage/
+tests/fixtures/*.jpg
+tests/fixtures/*.png
