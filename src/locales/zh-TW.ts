@@ -44,6 +44,8 @@ export const t = {
   viewer: {
     back: '返回',
     controls: {
+      depthMode: '深度效果模式',
+      depthModeHint: '開啟後視角固定，滑鼠移動產生立體視差',
       depthScale: '深度強度',
       invertDepth: '反轉深度',
       parallax: '視差強度',

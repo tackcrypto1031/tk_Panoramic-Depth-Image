@@ -44,15 +44,23 @@ export async function renderThumbnail(panoramaFile: File, depthFile: File | null
     camera.position.set(0, 0, 0.01);
     camera.lookAt(1, 0, 0);
 
+    panoTex.colorSpace = THREE.SRGBColorSpace;
     const geo = new THREE.SphereGeometry(500, 64, 32);
-    const mat = new THREE.MeshStandardMaterial({
-      map: panoTex,
-      displacementMap: depthTex ?? undefined,
-      displacementScale: depthTex ? DEFAULT_VIEWER_SETTINGS.depthScale * 50 : 0,
-      side: THREE.BackSide,
-      roughness: 1,
-      metalness: 0,
-    });
+    const mat = depthTex
+      ? new THREE.MeshStandardMaterial({
+          emissive: new THREE.Color(0xffffff),
+          emissiveMap: panoTex,
+          emissiveIntensity: 1,
+          displacementMap: depthTex,
+          displacementScale: -DEFAULT_VIEWER_SETTINGS.depthScale * 250,
+          side: THREE.BackSide,
+          roughness: 1,
+          metalness: 0,
+        })
+      : new THREE.MeshBasicMaterial({
+          map: panoTex,
+          side: THREE.BackSide,
+        });
     mat.toneMapped = false;
     const mesh = new THREE.Mesh(geo, mat);
     mesh.scale.set(-1, 1, 1);

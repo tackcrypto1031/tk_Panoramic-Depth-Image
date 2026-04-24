@@ -14,3 +14,10 @@ test-results/
 coverage/
 tests/fixtures/*.jpg
 tests/fixtures/*.png
+
+# Planning / tooling artifacts (not part of open-source release)
+.omc/
+.e2e-data/
+.planning/
+docs/superpowers/
+assets/

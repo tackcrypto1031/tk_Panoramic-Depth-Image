@@ -16,6 +16,7 @@ export interface ViewerSettings {
   autoRotate: boolean;
   autoRotateSpeed: number;
   invertDepth: boolean;
+  depthMode: boolean;
 }
 
 export interface ThumbnailMeta {
@@ -58,12 +59,13 @@ export interface ApiError {
 }
 
 export const DEFAULT_VIEWER_SETTINGS: ViewerSettings = {
-  depthScale: 0.05,
+  depthScale: 0.5,
   parallaxAmount: 0.3,
   fov: 75,
   autoRotate: false,
   autoRotateSpeed: 0.5,
   invertDepth: false,
+  depthMode: false,
 };
 
 export const LIMITS = {

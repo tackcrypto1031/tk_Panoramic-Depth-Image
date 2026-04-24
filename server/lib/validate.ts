@@ -75,5 +75,9 @@ export function validateViewerSettingsPatch(raw: unknown): Record<string, unknow
     if (typeof s.invertDepth !== 'boolean') throw ApiErrors.validation('invertDepth 必須為布林');
     out.invertDepth = s.invertDepth;
   }
+  if (s.depthMode !== undefined) {
+    if (typeof s.depthMode !== 'boolean') throw ApiErrors.validation('depthMode 必須為布林');
+    out.depthMode = s.depthMode;
+  }
   return out;
 }

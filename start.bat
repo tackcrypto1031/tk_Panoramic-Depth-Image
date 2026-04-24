@@ -41,7 +41,7 @@ if not exist data\items.json (
 
 node scripts\check-build.cjs
 if errorlevel 1 (
-  echo [...] 建置中（初次或版本變更）...
+  echo [...] 建置中（初次或版本/原始碼變更）...
   call npm run build
   if errorlevel 1 (
     echo [X] 建置失敗
@@ -50,15 +50,13 @@ if errorlevel 1 (
   )
 )
 
-node scripts\check-health.cjs
-if not errorlevel 1 (
-  echo [OK] Server 已在執行，開啟瀏覽器
-  start http://localhost:3001
-  exit /b 0
+echo [...] 關閉可能在執行的舊 server...
+for /f "tokens=5" %%p in ('netstat -ano ^| findstr "127.0.0.1:3001" ^| findstr LISTENING') do (
+  taskkill /F /PID %%p >nul 2>&1
 )
 
-echo [...] 啟動 server...
-start "tk_depthimg server" /min cmd /c "node dist\server\index.js"
-timeout /t 2 /nobreak >nul
-start http://localhost:3001
-exit /b 0
+echo [...] 啟動 server（關閉此視窗即停止）
+start "" http://localhost:3001
+node dist\server\index.js
+echo [.] Server 已結束
+endlocal

@@ -23,6 +23,13 @@ export function ControlPanel({ settings, onChange, onSave, onReset, hasDepth, sa
     <div className={styles.wrap}>
       {open && (
         <div className={styles.panel} onClick={(e) => e.stopPropagation()}>
+          <Toggle
+            label={t.viewer.controls.depthMode}
+            checked={settings.depthMode}
+            disabled={!hasDepth}
+            onChange={(v) => onChange({ depthMode: v })}
+          />
+          <div className={styles.divider} />
           <Slider
             label={t.viewer.controls.depthScale}
             value={settings.depthScale}
